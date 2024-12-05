@@ -96,12 +96,29 @@ setopt PROMPT_SUBST
 zstyle ':vcs_info:*' formats '%m [%b]'
 zstyle ':vcs_info:*' actionformats '%m [%b|%a]'
 # right prompt
+local colorPwd='%F{white}'
+local colorHost='%F{white}'
+local colorRc='%F{white}'
+case $(uname) in
+	Linux)
+		colorPwd='%F{yellow}'
+		colorHost='%F{green}'
+		colorRc='%F{cyan}'
+		;;
+	Darwin)
+		colorPwd='%F{red}'
+		colorHost='%F{cyan}'
+		colorRc='%F{yellow}'
+		;;
+esac
 precmd () {
-	# current directory in yallow
-	local left='%F{11}[%d]%f'
-	# branch name when versioned
+	# pwd
+	local left="${colorPwd}[%d]%f"
+
+	# version
 	vcs_info
 	local right="%{\e[38;5;32m%}${vcs_info_msg_0_}%{\e[m%}"
+
 	# caluculate space length
 	local invisible='%([BSUbfksu]|([FK]|){*})'
 	local leftwidth=${#${(S%%)left//$~invisible/}}
@@ -112,10 +129,10 @@ precmd () {
 _vcs_precmd () { vcs_info }
 add-zsh-hook precmd _vcs_precmd
 # left prompt
-# user@host in green
-PROMPT='%F{green}%n@%M %#%f '
-# <execution result> current time
-RPROMPT=$'%F{38}<%?> %{\e[38;5;251m%}%D{%b %d}, %*%{\e[m%}'
+# user@hostname
+PROMPT="${colorHost}%n@%M %#%f "
+# <return code> current time
+RPROMPT=${colorRc}$'<%?> %{\e[38;5;251m%}%D{%b %d}, %*%{\e[m%}'
 
 zstyle ':vcs_info:git+set-message:*' hooks git-config-user
 function +vi-git-config-user(){
@@ -133,7 +150,7 @@ if [ ! -f ~/.zshrc.zwc ] || [ ~/.dotfiles/.zshrc -nt ~/.zshrc.zwc ]; then
 fi
 
 # load private zshrc setting
-. ~/.zshrc_local &> /dev/null
+[ -f ${HOME}/.zshrc_local ] && . ${HOME}/.zshrc_local
 
 # expect package contains unbuffer
 less_with_unbuffer() {
@@ -182,6 +199,6 @@ type aws &> /dev/null \
 	&& alias awslocal='aws --endpoint-url http://localhost:8000'
 
 # for lima
-type limactl %> /dev/null \
+type limactl &> /dev/null \
 	&& eval "$(limactl completion zsh)"
 
