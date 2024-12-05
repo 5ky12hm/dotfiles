@@ -96,28 +96,32 @@ setopt PROMPT_SUBST
 zstyle ':vcs_info:*' formats '%m [%b]'
 zstyle ':vcs_info:*' actionformats '%m [%b|%a]'
 # right prompt
-local colorPwd='%F{white}'
-local colorHost='%F{white}'
-local colorRc='%F{white}'
+local colorPwd='{white}'
+local colorVcs='{white}'
+local colorHost='{white}'
+local colorRc='{white}'
+local colorTime='{white}'
 case $(uname) in
 	Linux)
-		colorPwd='%F{yellow}'
-		colorHost='%F{green}'
-		colorRc='%F{cyan}'
+		colorPwd='{yellow}'
+		colorVcs='{cyan}'
+		colorHost='{green}'
+		colorRc='{blue}'
 		;;
 	Darwin)
-		colorPwd='%F{red}'
-		colorHost='%F{cyan}'
-		colorRc='%F{yellow}'
+		colorPwd='{red}'
+		colorVcs='{magenta}'
+		colorHost='{cyan}'
+		colorRc='{yellow}'
 		;;
 esac
 precmd () {
 	# pwd
-	local left="${colorPwd}[%d]%f"
+	local left="%F${colorPwd}[%d]%f"
 
-	# version
+	# vcs
 	vcs_info
-	local right="%{\e[38;5;32m%}${vcs_info_msg_0_}%{\e[m%}"
+	local right="%F${colorVcs}${vcs_info_msg_0_}%f"
 
 	# caluculate space length
 	local invisible='%([BSUbfksu]|([FK]|){*})'
@@ -130,9 +134,9 @@ _vcs_precmd () { vcs_info }
 add-zsh-hook precmd _vcs_precmd
 # left prompt
 # user@hostname
-PROMPT="${colorHost}%n@%M %#%f "
+PROMPT="%F${colorHost}%n@%M %#%f "
 # <return code> current time
-RPROMPT=${colorRc}$'<%?> %{\e[38;5;251m%}%D{%b %d}, %*%{\e[m%}'
+RPROMPT="%F${colorRc}<%?>%f %F${colorTime}%D{%b %d}, %*%f"
 
 zstyle ':vcs_info:git+set-message:*' hooks git-config-user
 function +vi-git-config-user(){
