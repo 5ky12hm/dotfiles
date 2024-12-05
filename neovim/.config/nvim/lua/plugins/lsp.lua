@@ -17,16 +17,12 @@ return {
 			local autocmd = vim.api.nvim_create_autocmd
 
 			local ls = {
-				'lua_ls', -- lua language server
+				'jdtls', -- java language server
 				-- 'groovyls', -- groovy language server - Installation failed for Package(name=groovy-language-server) error=spawn: bash failed with exit code 1 and signal 0.
 				-- 'java_language_server', -- java language server -- can not install
-				'jdtls', -- java language server
-
+				'lua_ls', -- lua language server
 				-- 'efm',
 			}
-			if vim.fn.executable('python3') == 1 then
-				table.insert(ls, 'pylsp') -- python language server
-			end
 			if vim.fn.executable('go') == 1 then
 				table.insert(ls, 'gopls') -- go language server
 			end
@@ -34,6 +30,9 @@ return {
 				table.insert(ls, 'bashls') -- bash language server
 				table.insert(ls, 'eslint') -- javascript language server
 				table.insert(ls, 'ts_ls') -- typescript language server
+			end
+			if vim.fn.executable('python3') == 1 then
+				table.insert(ls, 'pylsp') -- python language server
 			end
 
 			local mason_lspconfig = require('mason-lspconfig')
