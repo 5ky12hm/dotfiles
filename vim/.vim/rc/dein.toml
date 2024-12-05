@@ -1,0 +1,50 @@
+[[plugins]]
+repo = 'Shougo/dein.vim'
+
+[[plugins]]
+repo = 'roxma/vim-hug-neovim-rpc'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'roxma/nvim-yarp'
+if = '!has("nvim")'
+
+[[plugins]]
+repo = 'w0ng/vim-hybrid'
+
+[[plugins]]
+repo = 'majutsushi/tagbar'
+hook_add = '''
+	if has('nvim')
+		let g:tagbar_iconchars = ['+', '-']
+	endif
+	let g:tagbar_sort = 0
+	nnoremap <silent> <Leader>f :<C-u>TagbarToggle<CR>
+'''
+
+[[plugins]]
+repo = 'scrooloose/nerdtree'
+hook_add = '''
+	nnoremap <silent> <Leader>n :<C-u>NERDTreeToggle<CR>
+'''
+
+[[plugins]]
+repo = 'tyru/caw.vim'
+hook_add = '''
+	nmap <Leader>c <Plug>(caw:zeropos:comment)
+	vmap <Leader>c <Plug>(caw:zeropos:comment)
+	nmap <Leader>C <Plug>(caw:zeropos:uncomment)
+	vmap <Leader>C <Plug>(caw:zeropos:uncomment)
+'''
+
+[[plugins]]
+repo = 'thinca/vim-quickrun'
+hook_add = '''
+" 	nnoremap <silent> <Leader>r <Plug>(quickrun)
+	nnoremap <silent> <Leader>r :<C-u>QuickRun -mode n<CR>
+"  	let g:quickrun_config = {'*': {'split': ''}}
+	let g:quickrun_config = get(g:, 'quickrun_config', {})
+	let g:quickrun_config._ = {
+		  \ 'outputter/buffer/opener': 'new',
+		  \ }
+'''

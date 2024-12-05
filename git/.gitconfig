@@ -1,0 +1,51 @@
+[include]
+	path = .gitconfig.user
+
+[core]
+	editor = nvim
+	ignorecase = false
+	quotepath = false
+	autoctlf = false
+
+; [status]
+; 	showUntrackedFiles = all
+
+; [commit]
+; 	verbose = true
+;
+; [rebase]
+; 	autostash = true
+
+[push]
+	default = simple
+
+; [fetch]
+; 	prune = true
+;
+; [pull]
+; 	rebase = true
+; 	ff = only
+
+[credential]
+	helper = store
+
+[url "ssh://git@github.com"]
+	insteadOf = https://github.com
+
+[alias]
+	gl = log --pretty='format:%C(yellow)%h %C(green)%cd %C(reset)%s %C(red)%d %C(cyan)[%an]' --date=format:'%c' --exclude=refs/stash --all --graph --name-status
+
+; [grep]
+; 	lineNumber = true
+; 	patternType = extended
+
+[merge]
+	tool = nvimdiff
+
+[mergetool]
+	keepBackup = false
+	prompt = false
+
+; [mergetool "nvimdiff"]
+; 	cmd = nvim -d ${LOCAL} ${REMOTE} ${MERGED} -c 'wincmd w' -c 'wincmd J'
+

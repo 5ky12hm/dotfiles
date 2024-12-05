@@ -1,0 +1,24 @@
+
+[[plugins]]
+repo = 'cohama/lexima.vim'
+on_event = 'InsertEnter'
+hook_source = '''
+	source ~/.vim/rc/plugins/lexima.rc.vim
+'''
+
+[[plugins]]
+repo = 'cespare/vim-toml'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'osyo-manga/vim-precious'
+on_ft = 'toml'
+
+[[plugins]]
+repo = 'Shougo/context_filetype.vim'
+on_ft = 'toml'
+hook_source = '''
+	let g:context_filetype#ignore_patterns = {
+    \ 'toml': ['^\s*#\s*'],
+	\ }
+'''
