@@ -22,6 +22,7 @@ return {
 				-- 'java_language_server', -- java language server -- can not install
 				'lua_ls', -- lua language server
 				-- 'efm',
+				'rust_analyzer' -- rust language server
 			}
 			if vim.fn.executable('go') == 1 then
 				table.insert(ls, 'gopls') -- go language server

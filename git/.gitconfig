@@ -29,8 +29,9 @@
 [credential]
 	helper = store
 
-[url "ssh://git@github.com"]
-	insteadOf = https://github.com
+; error occured if using custom github url in ~/.ssh/config
+; [url "ssh://git@github.com"]
+; 	insteadOf = https://github.com
 
 [alias]
 	gl = log --pretty='format:%C(yellow)%h %C(green)%cd %C(reset)%s %C(red)%d %C(cyan)[%an]' --date=format:'%c' --exclude=refs/stash --all --graph --name-status
