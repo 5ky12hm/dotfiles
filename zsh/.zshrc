@@ -195,6 +195,8 @@ type prettyping &> /dev/null \
 	&& alias ping='prettyping'
 type ncdu &> /dev/null \
 	&& alias du='ncdu --color dark -rr'
+# type httpie &> /dev/null \
+# 	&& alias curl='httpie'
 
 # shortcuts
 type trans &> /dev/null \
