@@ -202,7 +202,13 @@ type trans &> /dev/null \
 type aws &> /dev/null \
 	&& alias awslocal='aws --endpoint-url http://localhost:8000'
 
-# for lima
+# completion for lima
 type limactl &> /dev/null \
 	&& eval "$(limactl completion zsh)"
+# completion for uv
+type uv &> /dev/null \
+	&& eval "$(uv generate-shell-completion zsh)"
+# completion for uvx
+type uvx &> /dev/null \
+	&& eval "$(uvx --generate-shell-completion zsh)"
 
