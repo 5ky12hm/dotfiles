@@ -59,4 +59,11 @@ config.mouse_bindings = {
 	},
 }
 
+------------------------------
+-- keymap settings
+------------------------------
+config.keys = {
+	{ key = "q", mods = "CTRL", action = wezterm.action.ActivateCopyMode },
+}
+
 return config
