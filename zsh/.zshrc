@@ -35,11 +35,14 @@ bindkey -e
 # auto complete
 autoload -Uz compinit; compinit -i
 
-# ?
+# completion style
 zstyle ':completion:*:default' menu select=1
 
 # use the same path for sudo
 zstyle ':completion:*:sudo:*' command-path $path
+
+# enable completion for alias
+setopt complete_aliases
 
 # specify <Tab> bihind
 unsetopt auto_menu
@@ -121,7 +124,11 @@ precmd () {
 
 	# vcs
 	vcs_info
-	local right="%F${colorVcs}${vcs_info_msg_0_}%f"
+	# local right="%F${colorVcs}${vcs_info_msg_0_}%f"
+	# <return code> + vcs + current time
+	# local right="%F${colorRc}<%?>%f %F${colorVcs}${vcs_info_msg_0_}%f %F${colorTime}%D{%b %d}, %*%f"
+	# <return code> + vcs
+	local right="%F${colorRc}<%?>%f %F${colorVcs}${vcs_info_msg_0_}%f"
 
 	# caluculate space length
 	local invisible='%([BSUbfksu]|([FK]|){*})'
@@ -135,18 +142,20 @@ add-zsh-hook precmd _vcs_precmd
 # left prompt
 # user@hostname
 PROMPT="%F${colorHost}%n@%M %#%f "
-# <return code> current time
-RPROMPT="%F${colorRc}<%?>%f %F${colorTime}%D{%b %d}, %*%f"
+# <return code> + current time
+# RPROMPT="%F${colorRc}<%?>%f %F${colorTime}%D{%b %d}, %*%f"
 
 zstyle ':vcs_info:git+set-message:*' hooks git-config-user
 function +vi-git-config-user(){
 	hook_com[misc]+=$(git config user.email)
 }
 
-TMOUT=1
-TRAPALRM() {
-  zle reset-prompt
-}
+# update prompt current time
+# comment out: for wezterm copy mode
+# TMOUT=1
+# TRAPALRM() {
+#   zle reset-prompt
+# }
 
 # compile .zshrc for loading
 if [ ! -f ~/.zshrc.zwc ] || [ ~/.dotfiles/.zshrc -nt ~/.zshrc.zwc ]; then
@@ -156,19 +165,10 @@ fi
 # load private zshrc setting
 [ -f ${HOME}/.zshrc_local ] && . ${HOME}/.zshrc_local
 
-# expect package contains unbuffer
-less_with_unbuffer() {
-	unbuffer "$@" |& less -SR
-}
-result_open_neovim() {
-	nvim <("$@")
-}
-
 # aliases
 alias cp='cp -i'
 alias mv='mv -i'
 alias mkdir='mkdir -p'
-alias ubless=less_with_unbuffer
 alias cdp='cd -P'
 
 # use improve commands if exists
@@ -184,7 +184,7 @@ type exa &> /dev/null \
 	&& chpwd() { exa -a -F }
 type nvim &> /dev/null \
 	&& alias nv='nvim' \
-	&& alias nvc=result_open_neovim
+	&& alias nvc='() { nvim <("$@") }'
 type htop &> /dev/null \
 	&& alias top='htop -d 10'
 type dfc &> /dev/null \
@@ -203,6 +203,13 @@ type trans &> /dev/null \
 	&& alias ej='trans en:ja'
 type aws &> /dev/null \
 	&& alias awslocal='aws --endpoint-url http://localhost:8000'
+# expect package contains unbuffer
+type unbuffer &> /dev/null \
+	&& type less &> /dev/null \
+	&& alias ubless='() { unbuffer "$@" |& less -SR }' \
+	&& compdef ubless='unbuffer'
+type checksec &> /dev/null \
+	&& alias chefsec='() { checksec --file="$@" }'
 
 # completion for lima
 type limactl &> /dev/null \

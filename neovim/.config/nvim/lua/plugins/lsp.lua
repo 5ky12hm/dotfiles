@@ -17,6 +17,7 @@ return {
 			local autocmd = vim.api.nvim_create_autocmd
 
 			local ls = {
+				-- 'clangd', -- c language server -- The current platform is unsupported.
 				'jdtls', -- java language server
 				-- 'groovyls', -- groovy language server - Installation failed for Package(name=groovy-language-server) error=spawn: bash failed with exit code 1 and signal 0.
 				-- 'java_language_server', -- java language server -- can not install
