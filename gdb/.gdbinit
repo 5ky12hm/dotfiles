@@ -1,8 +1,3 @@
-# expand gdb
-# source /usr/share/peda/peda.py
-set debuginfod enabled on
-source ~/bin/pwndbg/gdbinit.py
-
 # disassembly as intel notation
 set disassembly-flavor intel
 
@@ -18,4 +13,14 @@ set print elements 0
 set follow-fork-mode parent
 
 # enable golang debug
-add-auto-load-safe-path /usr/lib/go/src/runtime/runtime-gdb.py
+# add-auto-load-safe-path /usr/lib/go/src/runtime/runtime-gdb.py
+
+# expand gdb
+# comment out: change to pwndbg
+# source /usr/share/peda/peda.py
+# auto added by pwndbg setup.sh
+
+# expand gdb
+# comment out: cannot use with rosetta
+# set debuginfod enabled on
+# source ~/repo/tools/pwndbg/gdbinit.py

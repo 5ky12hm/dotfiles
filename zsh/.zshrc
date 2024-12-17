@@ -168,7 +168,7 @@ fi
 # aliases
 alias cp='cp -i'
 alias mv='mv -i'
-alias mkdir='mkdir -p'
+# alias mkdir='mkdir -p'
 alias cdp='cd -P'
 
 # use improve commands if exists
