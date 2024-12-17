@@ -1,2 +1,6 @@
 vim/.vim/dein
 vim/.vim/undo
+
+# for macos
+.DS_Store
+

@@ -63,7 +63,9 @@ config.mouse_bindings = {
 -- keymap settings
 ------------------------------
 config.keys = {
-	{ key = "q", mods = "CTRL", action = wezterm.action.ActivateCopyMode },
+	{ key = "q", mods = "CTRL",       action = wezterm.action.ActivateCopyMode },
+	{ key = "[", mods = "CTRL|SHIFT", action = wezterm.action.MoveTabRelative(-1) },
+	{ key = "]", mods = "CTRL|SHIFT", action = wezterm.action.MoveTabRelative(1) },
 }
 
 return config

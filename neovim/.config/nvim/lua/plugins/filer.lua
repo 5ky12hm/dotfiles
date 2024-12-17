@@ -94,7 +94,6 @@ return {
 				},
 				patterns = {
 					".git",
-					"00.Personal",
 				},
 			})
 		end,
