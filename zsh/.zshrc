@@ -13,6 +13,7 @@ path=(
 	/opt/homebrew/bin(N-/)
 	/usr/local/bin(N-/)
 	/usr/local/sbin(N-/)
+	/usr/bin/vendor_perl(N-/)
 	/usr/bin(N-/)
 	/usr/sbin(N-/)
 	/bin(N-/)
