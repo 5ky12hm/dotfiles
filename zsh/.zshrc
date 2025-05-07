@@ -3,7 +3,7 @@
 # 	N: empty string instead of errors if not exists
 # 	-: follow symlink
 # 	/: directory
-path=(
+path+=(
 	${HOME}/bin(N-/)
 	${HOME}/.local/bin(N-/)
 	${HOME}/.composer/vendor/bin(N-/)
@@ -19,7 +19,6 @@ path=(
 	/bin(N-/)
 	/sbin(N-/)
 	.
-	${PATH}
 )
 # you can move following by $(cd) in anywhere
 cdpath=(
