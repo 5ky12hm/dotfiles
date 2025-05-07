@@ -5,6 +5,7 @@ local o = vim.opt
 ------------------------------
 o.encoding = 'utf-8'
 o.fileencoding = 'utf-8'
+o.fileencodings = 'utf-8,sjis,euc-jp,cp932'
 
 ------------------------------
 -- display settings
@@ -30,7 +31,7 @@ o.foldenable = false
 -- instead of above
 -- reference: https://en.wikipedia.org/wiki/List_of_Unicode_characters
 vim.fn.setcellwidths({
-	{0x203b, 0x203b, 2}, -- reference mark
+	{ 0x203b, 0x203b, 2 }, -- reference mark
 })
 
 ------------------------------
@@ -61,7 +62,7 @@ o.formatoptions:remove({ 'r', 'o' })
 -- disable mouse
 o.mouse = ''
 -- also yank to os clipboard
-o.clipboard:append{'unnamedplus'}
+o.clipboard:append { 'unnamedplus' }
 
 
 ------------------------------
@@ -69,4 +70,3 @@ o.clipboard:append{'unnamedplus'}
 ------------------------------
 -- make tab completion behavior like bash in ex mode
 o.wildmode = 'list:longest'
-
