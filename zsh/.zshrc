@@ -178,10 +178,10 @@ type rg &> /dev/null \
 type fdfind &> /dev/null \
 	&& alias fd='fdfind' \
 	&& alias find='fdfind'
-type exa &> /dev/null \
-	&& alias ls='exa -F' \
-	&& alias ll='exa -FlBghm -snew --time-style=full-iso' \
-	&& chpwd() { exa -a -F }
+type eza &> /dev/null \
+	&& alias ls='eza -F' \
+	&& alias ll='eza -FlBghm -snew --time-style=full-iso' \
+	&& chpwd() { eza -a -F }
 type nvim &> /dev/null \
 	&& alias nv='nvim' \
 	&& alias nvc='() { nvim <("$@") }'
