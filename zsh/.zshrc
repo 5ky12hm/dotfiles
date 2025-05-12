@@ -7,7 +7,7 @@ path+=(
 	${HOME}/bin(N-/)
 	${HOME}/.local/bin(N-/)
 	${HOME}/.composer/vendor/bin(N-/)
-	${HOME}/.cargo/bin(N-/)
+	${CARGO_HOME}/bin(N-/)
 	${GOPATH}/bin(N-/)
 	${VOLTA_HOME}/bin(N-/)
 	/opt/homebrew/bin(N-/)
@@ -180,7 +180,7 @@ type fdfind &> /dev/null \
 	&& alias find='fdfind'
 type eza &> /dev/null \
 	&& alias ls='eza -F' \
-	&& alias ll='eza -FlBghm -snew --time-style=full-iso' \
+	&& alias ll='eza -F -lBghm -snew --time-style=full-iso' \
 	&& chpwd() { eza -a -F }
 type nvim &> /dev/null \
 	&& alias nv='nvim' \

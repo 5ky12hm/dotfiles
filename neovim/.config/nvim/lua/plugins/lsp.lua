@@ -36,6 +36,9 @@ return {
 			if vim.fn.executable('python3') == 1 then
 				table.insert(ls, 'pylsp') -- python language server
 			end
+			if vim.fn.executable('cargo') == 1 then
+				table.insert(ls, 'nil_ls') -- nix language server
+			end
 
 			local mason_lspconfig = require('mason-lspconfig')
 			mason_lspconfig.setup({
@@ -50,6 +53,7 @@ return {
 					})
 				end,
 			})
+
 			local h = require('helpers.map')
 			h.nmap('<leader>e', vim.diagnostic.open_float)
 			h.nmap('<leader>l', vim.diagnostic.setloclist)
