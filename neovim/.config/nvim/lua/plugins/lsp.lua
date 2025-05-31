@@ -21,7 +21,6 @@ return {
 				'jdtls', -- java language server
 				-- 'groovyls', -- groovy language server - Installation failed for Package(name=groovy-language-server) error=spawn: bash failed with exit code 1 and signal 0.
 				-- 'java_language_server', -- java language server -- can not install
-				'lua_ls', -- lua language server
 				-- 'efm',
 				'rust_analyzer' -- rust language server
 			}
@@ -38,6 +37,9 @@ return {
 			end
 			if vim.fn.executable('cargo') == 1 then
 				table.insert(ls, 'nil_ls') -- nix language server
+			end
+			if vim.fn.executable('lua-language-server') == 1 then
+				table.insert(ls, 'lua_ls') -- lua language server
 			end
 
 			local mason_lspconfig = require('mason-lspconfig')

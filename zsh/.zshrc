@@ -202,7 +202,7 @@ type ncdu &> /dev/null \
 type trans &> /dev/null \
 	&& alias ej='trans en:ja'
 type aws &> /dev/null \
-	&& alias awslocal='aws --endpoint-url http://localhost:8000'
+	&& alias awslocalstack='aws --endpoint-url http://localhost:4566 --profile localstack'
 # expect package contains unbuffer
 type unbuffer &> /dev/null \
 	&& type less &> /dev/null \
