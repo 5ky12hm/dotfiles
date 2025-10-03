@@ -2,12 +2,21 @@ return {
 	{
 		'williamboman/mason-lspconfig.nvim',
 		lazy = false,
+		-- TODO: delete: to avoid this error
+		-- Failed to run `config` for mason-lspconfig.nvim
+		-- lsp.lua:49: attempt to call field 'setup_handlers' (a nil value)
+		-- # stacktrace:
+		--   - .config/nvim/lua/plugins/lsp.lua:49 _in_ **config**
+		--   - .dotfiles/neovim/.config/nvim/init.lua:5
+		version = "^1.0.0",
 		dependencies = {
 			{
 				'williamboman/mason.nvim',
 				cmd = 'Mason',
 				build = ':MasonUpdate',
 				opts = {},
+				-- TODO: delete: to avoid setup_headers error
+				version = "^1.0.0",
 			},
 			'neovim/nvim-lspconfig',
 			'hrsh7th/cmp-nvim-lsp',
@@ -31,6 +40,7 @@ return {
 				table.insert(ls, 'bashls') -- bash language server
 				table.insert(ls, 'eslint') -- javascript language server
 				table.insert(ls, 'ts_ls') -- typescript language server
+				table.insert(ls, 'astro') -- astro language server
 			end
 			if vim.fn.executable('python3') == 1 then
 				table.insert(ls, 'pylsp') -- python language server

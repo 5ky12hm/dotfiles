@@ -16,11 +16,5 @@ set follow-fork-mode parent
 # add-auto-load-safe-path /usr/lib/go/src/runtime/runtime-gdb.py
 
 # expand gdb
-# comment out: change to pwndbg
-# source /usr/share/peda/peda.py
-# auto added by pwndbg setup.sh
-
-# expand gdb
-# comment out: cannot use with rosetta
-# set debuginfod enabled on
-# source ~/repo/tools/pwndbg/gdbinit.py
+source ~/.gdbinit-gef.py
+gef config context.clear_screen 0

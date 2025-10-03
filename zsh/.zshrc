@@ -175,9 +175,11 @@ alias cdp='cd -P'
 type rg &> /dev/null \
 	&& export RIPGREP_CONFIG_PATH=~/.ripgreprc \
 	&& alias grep='rg'
-type fdfind &> /dev/null \
-	&& alias fd='fdfind' \
-	&& alias find='fdfind'
+# type fdfind &> /dev/null \
+# 	&& alias fd='fdfind' \
+# 	&& alias find='fdfind'
+type fd &> /dev/null \
+	&& alias find='fd'
 type eza &> /dev/null \
 	&& alias ls='eza -F' \
 	&& alias ll='eza -F -lBghm -snew --time-style=full-iso' \
@@ -187,16 +189,22 @@ type nvim &> /dev/null \
 	&& alias nvc='() { nvim <("$@") }'
 type htop &> /dev/null \
 	&& alias top='htop -d 10'
-type dfc &> /dev/null \
-	&& alias df='dfc'
+# type dfc &> /dev/null \
+# 	&& alias df='dfc'
+type duf &> /dev/null \
+	&& alias df='duf'
 type bat &> /dev/null \
 	&& alias cat='bat'
 type prettyping &> /dev/null \
 	&& alias ping='prettyping'
-type ncdu &> /dev/null \
-	&& alias du='ncdu --color dark -rr'
+# type ncdu &> /dev/null \
+# 	&& alias du='ncdu --color dark -rr'
+type dust &> /dev/null \
+	&& alias du='dust'
 # type httpie &> /dev/null \
 # 	&& alias curl='httpie'
+type procs &> /dev/null \
+	&& alias ps='procs'
 
 # shortcuts
 type trans &> /dev/null \
@@ -220,4 +228,6 @@ type uv &> /dev/null \
 # completion for uvx
 type uvx &> /dev/null \
 	&& eval "$(uvx --generate-shell-completion zsh)"
+type docker &> /dev/null \
+	&& alias dx='docker exec -it -u 5ky12hm $(docker ps | peco | awk "{print \$1}") zsh'
 

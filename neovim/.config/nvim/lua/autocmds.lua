@@ -37,7 +37,7 @@ end
 autocmd('BufEnter', {
 	pattern = "*.env",
 	callback = function(args)
-		vim.diagnostic.disable(args.buf)
+		vim.diagnostic.enable(false, { bufnr = args.buf })
 	end,
 })
 

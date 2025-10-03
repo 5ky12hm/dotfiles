@@ -99,6 +99,7 @@ if vim.fn.executable('gcc') == 1 then
 					'vimdoc',
 					'nix',
 					'yaml',
+					'astro',
 				},
 				highlight = { enable = true },
 				indent = { enable = true },

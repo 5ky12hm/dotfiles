@@ -5,7 +5,7 @@
 	editor = nvim
 	ignorecase = false
 	quotepath = false
-	autoctlf = false
+	autocrlf = false
 
 ; [status]
 ; 	showUntrackedFiles = all
