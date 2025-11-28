@@ -10,6 +10,7 @@ path+=(
 	${CARGO_HOME}/bin(N-/)
 	${GOPATH}/bin(N-/)
 	${VOLTA_HOME}/bin(N-/)
+	${JAVA_HOME}/bin(N-/)
 	/opt/homebrew/bin(N-/)
 	/usr/local/bin(N-/)
 	/usr/local/sbin(N-/)

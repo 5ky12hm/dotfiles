@@ -8,3 +8,4 @@ export CGO_ENABLED=0
 export VOLTA_HOME="${HOME}/.volta"
 export RUSTUP_HOME="${HOME}/.rustup"
 export CARGO_HOME="${HOME}/.cargo"
+export JAVA_HOME=$(readlink -f /usr/bin/javac | sed "s:/bin/javac::")

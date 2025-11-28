@@ -1,11 +1,10 @@
 vim.cmd('autocmd!')
 
 vim.api.nvim_create_user_command('R', function()
-	-- vim.cmd('tabf ' .. '~/.config/nvim')
 	vim.cmd('e ' .. '~/.config/nvim')
 end, {})
 
-vim.api.nvim_create_user_command('M', function()
+vim.api.nvim_create_user_command('N', function()
 	vim.cmd('e ' .. '~/notes')
 end, {})
 
@@ -19,3 +18,4 @@ vim.scriptencoding = 'utf-8'
 ------------------------------
 vim.g.python3_host_prog = os.execute('echo -n $(which python3)')
 
+vim.fs.root(0, '.git')
