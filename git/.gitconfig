@@ -5,6 +5,7 @@
 	editor = nvim
 	ignorecase = false
 	quotepath = false
+	pager = "LESSCHARSET=utf-8 less"
 	autocrlf = false
 
 ; [status]
