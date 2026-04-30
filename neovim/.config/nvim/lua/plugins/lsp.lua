@@ -56,11 +56,14 @@ return {
 			mason_lspconfig.setup({
 				ensure_installed = ls,
 			})
-			local lspconfig = require('lspconfig')
+			-- local lspconfig = require('lspconfig')
 			local capabilities = require('cmp_nvim_lsp').default_capabilities()
 			mason_lspconfig.setup_handlers({
 				function(server)
-					lspconfig[server].setup({
+					-- lspconfig[server].setup({
+					-- 	capabilities = capabilities,
+					-- })
+					vim.lsp.config(server, {
 						capabilities = capabilities,
 					})
 				end,

@@ -48,7 +48,7 @@ table.insert(utils_plugins, {
 			end, { bang = true })
 
 			-- Command to show logs
-			vim.api.nvim_create_user_command("BaleiaLogs", vim.g.baleia.logger.show, { bang = true })
+			vim.api.nvim_create_user_command("BaleiaLogs", vim.cmd.messages, { bang = true })
 		end,
 	},
 	{
