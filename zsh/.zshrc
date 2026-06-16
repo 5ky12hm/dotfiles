@@ -31,16 +31,25 @@ colors
 
 # set emacs keybind(default behavior of shell)
 bindkey -e
-
 # bindkey -v # vim keybind
+
 # auto complete
 if [ -d "/nix/var/nix/profiles/default/share/zsh/site-functions" ]; then
     fpath=("/nix/var/nix/profiles/default/share/zsh/site-functions" $fpath)
 fi
-if [ -d "$HOME/.nix-profile/share/zsh/site-functions" ]; then
-    fpath=("$HOME/.nix-profile/share/zsh/site-functions" $fpath)
+if [ -d "${HOME}/.nix-profile/share/zsh/site-functions" ]; then
+    fpath=("${HOME}/.nix-profile/share/zsh/site-functions" $fpath)
 fi
-autoload -Uz compinit; compinit -i
+if [[ -d "${HOME}/.nix-profile/share/zsh/site-functions/zsh-completions" ]]; then
+    fpath=("${HOME}/.nix-profile/share/zsh/site-functions/zsh-completions" $fpath)
+fi
+if [[ -d "/opt/homebrew/share/zsh/site-functions" ]]; then
+    fpath=("/opt/homebrew/share/zsh/site-functions" $fpath)
+fi
+if [[ -d "/opt/homebrew/share/zsh-completions" ]]; then
+    fpath=("/opt/homebrew/share/zsh-completions" $fpath)
+fi
+autoload -Uz compinit; compinit -u
 
 # completion style
 zstyle ':completion:*:default' menu select=1
@@ -159,16 +168,6 @@ fi
 (( $+commands[checksec] )) \
 	&& alias chefsec='() { checksec --file="$@" }'
 
-# completion for lima
-(( $+commands[limactl] )) \
-	&& eval "$(limactl completion zsh)"
-# completion for uv
-(( $+commands[uv] )) \
-	&& eval "$(uv generate-shell-completion zsh)"
-# completion for uvx
-(( $+commands[uvx] )) \
-	&& eval "$(uvx --generate-shell-completion zsh)"
-
 # expect package contains unbuffer
 if (( $+commands[unbuffer] )); then
 	(( $+commands[less] )) \
@@ -230,3 +229,15 @@ if (( $+commands[fzf] )); then
 	fi
 fi
 
+(( $+commands[direnv] )) \
+	&& eval "$(direnv hook zsh)"
+
+autoload -Uz add-zsh-hook
+add-zsh-hook precmd () {
+	if (( $+commands[uv] )) && ! (( $+functions[_uv] )); then
+		eval "$(uv generate-shell-completion zsh)"
+	fi
+	if (( $+commands[uvx] )) && ! (( $+functions[_uvx] )); then
+		eval "$(uvx --generate-shell-completion zsh)"
+	fi
+}

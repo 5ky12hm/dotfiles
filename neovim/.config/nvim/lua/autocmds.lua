@@ -41,14 +41,30 @@ autocmd({'BufRead', "BufNewFile"}, {
 	end,
 })
 
--- configure indent for nix file
+-- configure indent
+local indent_group = vim.api.nvim_create_augroup("CustomIndent", { clear = true })
 vim.api.nvim_create_autocmd("FileType", {
-	pattern = "nix",
-	callback = function()
-		vim.bo.expandtab = true
-		vim.bo.shiftwidth = 2
-		vim.bo.tabstop = 2
-	end,
+  group = indent_group,
+  pattern = {
+    "javascript", "typescript", "javascriptreact", "typescriptreact",
+    "yaml", "json", "html", "css", "ruby", "nix", "markdown"
+  },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 2
+    vim.opt_local.shiftwidth = 2
+    vim.opt_local.softtabstop = 2
+  end,
+})
+vim.api.nvim_create_autocmd("FileType", {
+  group = indent_group,
+  pattern = { "python", "rust", "c", "cpp", "java", "cs" },
+  callback = function()
+    vim.opt_local.expandtab = true
+    vim.opt_local.tabstop = 4
+    vim.opt_local.shiftwidth = 4
+    vim.opt_local.softtabstop = 4
+  end,
 })
 
 ------------------------------

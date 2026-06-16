@@ -1,13 +1,5 @@
 vim.cmd('autocmd!')
 
-vim.api.nvim_create_user_command('R', function()
-	vim.cmd('e ' .. '~/.config/nvim')
-end, {})
-
-vim.api.nvim_create_user_command('N', function()
-	vim.cmd('e ' .. '~/notes')
-end, {})
-
 ------------------------------
 -- encode settings
 ------------------------------

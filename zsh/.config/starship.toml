@@ -1,11 +1,21 @@
 command_timeout = 1500
 
 format = """
-$directory$fill$status${custom.git_user}$git_branch$nix_shell$nodejs$python
-$username$hostname$character"""
+$username$hostname$directory$fill$status${custom.git_user}$git_branch$nix_shell$nodejs$python
+$character"""
+
+[username]
+show_always = true
+format = "[$user]($style)"
+style_user = "bold cyan"
+
+[hostname]
+ssh_only = false
+format = "@[$hostname]($style)"
+style = "bold cyan"
 
 [directory]
-format = "\\[[$path]($style)\\]"
+format = " \\[[$path]($style)\\]"
 style = "bold red"
 truncation_length = 0
 truncate_to_repo = false
@@ -39,16 +49,6 @@ format = "\\[[$version]($style)\\]"
 [python]
 format = "\\[[$version]($style)\\]"
 
-[username]
-show_always = true
-format = "[$user]($style)"
-style_user = "bold cyan"
-
-[hostname]
-ssh_only = false
-format = "@[$hostname]($style)"
-style = "bold cyan"
-
 [character]
-success_symbol = " [%](bold white)"
-error_symbol = " [%](bold red)"
+success_symbol = "[%](bold white)"
+error_symbol = "[%](bold red)"

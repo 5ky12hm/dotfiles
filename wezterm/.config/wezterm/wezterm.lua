@@ -77,8 +77,28 @@ config.keys = {
 	{ key = "[", mods = "SHIFT|CTRL", action = wezterm.action.MoveTabRelative(-1) },
 	{ key = "]", mods = "SHIFT|CTRL", action = wezterm.action.MoveTabRelative(1) },
 
-	{ key = 't', mods = "SHIFT|CTRL", action = wezterm.action.SpawnCommandInNewTab { cwd = wezterm.home_dir, domain = 'CurrentPaneDomain' } },
+	{ key = 'w', mods = 'SHIFT|CTRL', action = wezterm.action.DisableDefaultAssignment },
+	{ key = 'w', mods = 'SUPER', action = wezterm.action.DisableDefaultAssignment },
+
 	{ key = 'n', mods = "SHIFT|CTRL", action = wezterm.action.SpawnCommandInNewWindow { cwd = wezterm.home_dir } },
+	-- { key = 't', mods = "SHIFT|CTRL", action = wezterm.action.SpawnCommandInNewTab { cwd = wezterm.home_dir, domain = 'CurrentPaneDomain' } },
+	{
+		key = 't',
+		mods = 'CTRL|SHIFT',
+		action = wezterm.action_callback(function(win, pane)
+			local mux_win = win:mux_window()
+			for _, item in ipairs(mux_win:tabs_with_info()) do
+				if item.is_active then
+					mux_win:spawn_tab({
+						domain = 'CurrentPaneDomain',
+						cwd = wezterm.home_dir,
+					})
+					win:perform_action(wezterm.action.MoveTab(item.index + 1), pane)
+					return
+				end
+			end
+		end),
+	},
 }
 
 return config

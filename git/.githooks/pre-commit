@@ -1,0 +1,10 @@
+#!/bin/sh
+
+local_name=$(git config --local user.name)
+local_email=$(git config --local user.email)
+if [ -z "${local_name}" ] || [ -z "${local_email}" ]; then
+    echo "================================================="
+    echo " error: failed to get name or email"
+    echo "================================================="
+    exit 1
+fi

@@ -61,6 +61,9 @@ h.xmap('P', 'p')
 h.nmap('<leader>c', 'gcc', { remap = true, silent = true })
 h.vmap('<leader>c', 'gc', { remap = true, silent = true })
 
+-- ]p in insert mode
+h.imap('<c-v>', '<c-r><c-p>+')
+
 ------------------------------
 -- tab keymaps
 -- use buffer instead of tab !! comment out !!

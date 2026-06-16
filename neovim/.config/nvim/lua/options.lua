@@ -14,10 +14,12 @@ o.fileencodings = 'utf-8,sjis,euc-jp,cp932'
 o.number = true
 -- do not wrap line
 o.wrap = false
--- number of spaces of tab
-o.tabstop = 4
--- number of spaces of indent
-o.shiftwidth = 4
+-- configure indent
+o.expandtab = false
+o.tabstop = 2
+o.shiftwidth = 2
+o.softtabstop = 2
+
 -- enable true color
 o.termguicolors = true
 -- show matched bracket
