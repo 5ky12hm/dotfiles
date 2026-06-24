@@ -1,0 +1,108 @@
+return {
+	-- {
+	-- 	"coder/claudecode.nvim",
+	-- 	dependencies = {
+	-- 		"folke/snacks.nvim",
+	-- 	},
+	-- 	config = true,
+	-- 	cmd = {
+	-- 		"ClaudeCode",
+	-- 		"ClaudeCodeFocus",
+	-- 		"ClaudeCodeSelectModel",
+	-- 		"ClaudeCodeAdd",
+	-- 		"ClaudeCodeSend",
+	-- 		"ClaudeCodeTreeAdd",
+	-- 		"ClaudeCodeStatus",
+	-- 		"ClaudeCodeStart",
+	-- 		"ClaudeCodeStop",
+	-- 		"ClaudeCodeOpen",
+	-- 		"ClaudeCodeClose",
+	-- 		"ClaudeCodeDiffAccept",
+	-- 		"ClaudeCodeDiffDeny",
+	-- 		"ClaudeCodeCloseAllDiffs",
+	-- 	},
+	-- 	keys = {
+	-- 		{ "<leader>a", nil, desc = "AI/Claude Code" },
+	-- 		{ "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" },
+	-- 		{ "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" },
+	-- 		{ "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" },
+	-- 		{ "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" },
+	-- 		{ "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" },
+	-- 		{ "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" },
+	-- 		{ "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" },
+	-- 		{
+	-- 			"<leader>as",
+	-- 			"<cmd>ClaudeCodeTreeAdd<cr>",
+	-- 			desc = "Add file",
+	-- 			ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw", "snacks_picker_list" },
+	-- 		},
+	-- 		{ "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" },
+	-- 		{ "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" },
+	-- 	},
+	-- },
+	-- {
+	-- 	"yetone/avante.nvim",
+	-- 	build = vim.fn.has("win32") ~= 0
+	-- 			and "powershell -ExecutionPolicy Bypass -File Build.ps1 -BuildFromSource false"
+	-- 		or "make",
+	-- 	event = "VeryLazy",
+	-- 	version = false,
+	-- 	opts = {
+	-- 		instructions_file = "avante.md",
+	-- 		provider = "claude",
+	-- 		providers = {
+	-- 			claude = {
+	-- 				endpoint = "https://api.anthropic.com",
+	-- 				model = "claude-sonnet-4-20250514",
+	-- 				timeout = 30000,
+	-- 				extra_request_body = {
+	-- 					temperature = 0.75,
+	-- 					max_tokens = 20480,
+	-- 				},
+	-- 			},
+	-- 			moonshot = {
+	-- 				endpoint = "https://api.moonshot.ai/v1",
+	-- 				model = "kimi-k2-0711-preview",
+	-- 				timeout = 30000, -- Timeout in milliseconds
+	-- 				extra_request_body = {
+	-- 					temperature = 0.75,
+	-- 					max_tokens = 32768,
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 	},
+	-- 	dependencies = {
+	-- 		"nvim-lua/plenary.nvim",
+	-- 		"MunifTanjim/nui.nvim",
+	-- 		"nvim-mini/mini.pick",
+	-- 		"nvim-telescope/telescope.nvim",
+	-- 		"hrsh7th/nvim-cmp",
+	-- 		"ibhagwan/fzf-lua",
+	-- 		"stevearc/dressing.nvim",
+	-- 		"folke/snacks.nvim",
+	-- 		"nvim-tree/nvim-web-devicons",
+	-- 		{
+	-- 			"HakonHarnes/img-clip.nvim",
+	-- 			event = "VeryLazy",
+	-- 			opts = {
+	-- 				default = {
+	-- 					embed_image_as_base64 = false,
+	-- 					prompt_for_file_name = false,
+	-- 					drag_and_drop = {
+	-- 						insert_mode = true,
+	-- 					},
+	-- 					use_absolute_path = true,
+	-- 				},
+	-- 			},
+	-- 		},
+	-- 		{
+	-- 			-- Make sure to set this up properly if you have lazy=true
+	-- 			"MeanderingProgrammer/render-markdown.nvim",
+	-- 			opts = {
+	-- 				file_types = { "markdown", "Avante" },
+	-- 			},
+	-- 			ft = { "markdown", "Avante" },
+	-- 		},
+	-- 	},
+	-- },
+}

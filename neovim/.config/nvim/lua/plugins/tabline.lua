@@ -13,6 +13,7 @@ return {
 					-- mode = 'tabs',
 					diagnostics = 'nvim_lsp',
 					separator_style = 'thin', -- slant, thick
+					sort_by = 'insert_after_current',
 					offsets = {
 						{
 							filetype = 'NvimTree',

@@ -44,10 +44,10 @@ return {
 
 				-- for project.nvim
 				sync_root_with_cwd = true,
-				respect_buf_cwd = true,
+				respect_buf_cwd = false,
 				update_focused_file = {
 					enable = true,
-					update_root = true
+					update_root = false,
 				},
 			})
 			local h = require('helpers.map')
@@ -89,11 +89,19 @@ return {
 		config = function()
 			require("project_nvim").setup({
 				detection_methods = {
-					-- "lsp",
 					"pattern",
+					"lsp",
 				},
 				patterns = {
 					".git",
+
+					"package.json",			-- Node.js
+					"go.mod",						-- Go
+					"Cargo.toml",				-- Rust
+					"pyproject.toml",		-- Python
+					"requirements.txt",	-- Python
+					"pom.xml",					-- Java
+					"build.gradle",			-- Java
 				},
 			})
 		end,
