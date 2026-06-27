@@ -6,11 +6,12 @@ return {
 			local lint = require("lint")
 
 			local markdownlint = lint.linters.markdownlint
-			markdownlint.args = vim.list_extend({
+			markdownlint.args = vim.list_extend(markdownlint.args or {}, {
 				"--disable",
 				"MD013",
+				"MD034",
 				"--",
-			}, markdownlint.args or {})
+			})
 
 			local default_linters = {
 				-- astro = { 'eslint' }, --> eslint (lsp)
