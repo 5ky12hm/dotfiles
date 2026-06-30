@@ -9,6 +9,7 @@ return {
 			markdownlint.args = vim.list_extend(markdownlint.args or {}, {
 				"--disable",
 				"MD013",
+				"MD033",
 				"MD034",
 				"--",
 			})

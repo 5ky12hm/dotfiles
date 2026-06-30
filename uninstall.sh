@@ -8,16 +8,19 @@ function check_prog() {
 }
 check_prog stow
 
-cd $(dirname $0)
+cd "$(dirname $0)" || {
+	echo "failed to change directory. aborting..."
+	exit 1
+}
 
 for f in *
 do
-	[ ${f} = 'README.md' ] && continue
-	[ ${f} = 'install.sh' ] && continue
-	[ ${f} = 'uninstall.sh' ] && continue
+	[ "${f}" = 'README.md' ] && continue
+	[ "${f}" = 'install.sh' ] && continue
+	[ "${f}" = 'uninstall.sh' ] && continue
+	[ "${f}" = 'LICENSE' ] && continue
 
-	stow --target ${HOME} --delete ${f}
+	stow -v --target "${HOME}" --delete "${f}"
 done
 
-echo 'dotfiles uninstallation has been complated !'
-
+echo 'dotfiles uninstallation has been completed !'

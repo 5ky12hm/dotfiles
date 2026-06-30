@@ -1,37 +1,51 @@
 #!/usr/bin/env zsh
 
 function check_prog() {
-    if ! hash "$1" > /dev/null 2>&1; then
-        echo "command not found: $1. aborting..."
-        exit 1
-    fi
+	if ! hash "$1" > /dev/null 2>&1; then
+		echo "command not found: $1. aborting..."
+		exit 1
+	fi
 }
 check_prog stow
-mkdir -p "${HOME}/.config"
 
-cd $(dirname $0)
-
-PWD=$(pwd)
-DOTDIRPATH=${HOME}/.dotfiles
-
-mv ${PWD} ${DOTDIRPATH} &> /dev/null
-cd ${DOTDIRPATH}
-if [ $? -ne 0 ]; then
-	echo "directory not found: ${DOTDIRPATH}. aborting..."
+cd "$(dirname $0)" || {
+	echo "failed to change directory. aborting..."
 	exit 1
+}
+CURRENT_DIRPATH=$(pwd)
+DOTFILES_DIRPATH="${HOME}/.dotfiles"
+if [ "${CURRENT_DIRPATH}" != "${DOTFILES_DIRPATH}" ]; then
+	mv "${CURRENT_DIRPATH}" "${DOTFILES_DIRPATH}" &> /dev/null
 fi
+cd "${DOTFILES_DIRPATH}" || {
+	echo "directory not found: ${DOTFILES_DIRPATH}. aborting..."
+	exit 1
+}
 
+OS_NAME="$(uname -s)"
 for f in *
 do
-	[ ${f} = 'README.md' ] && continue
-	[ ${f} = 'install.sh' ] && continue
-	[ ${f} = 'uninstall.sh' ] && continue
+	[ "${f}" = 'README.md' ] && continue
+	[ "${f}" = 'install.sh' ] && continue
+	[ "${f}" = 'uninstall.sh' ] && continue
+	[ "${f}" = 'LICENSE' ] && continue
 
 	# transition to neovim
-	[ ${f} = 'vim' ] && continue
+	[ "${f}" = 'vim' ] && continue
 
-	stow --target ${HOME} ${f}
+	case "${OS_NAME}" in
+		Darwin)
+			[ "${f}" = 'colima' ] && continue
+			;;
+	esac
+
+	stow -v --target="${HOME}" --no-folding "${f}"
 done
 
-echo 'dotfiles installation has been complated !'
+if hash brew > /dev/null 2>&1; then
+	DOCKER_PLUGIN_DIR="${HOME}/.docker/cli-plugins"
+	mkdir -p "${DOCKER_PLUGIN_DIR}"
+	ln -sfn "$(brew --prefix)/opt/docker-compose/bin/docker-compose" "${DOCKER_PLUGIN_DIR}/docker-compose"
+fi
 
+echo 'dotfiles installation has been completed !'
